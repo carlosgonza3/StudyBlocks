@@ -90,20 +90,20 @@ export default function EditorPage() {
             </div>
 
             <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
-                <Card className="overflow-hidden p-0">
-                    <div className="border-b border-zinc-200 px-4 py-3">
+                <Card className="overflow-hidden p-0 gap-0">
+                    <div className="border-b px-4 py-3">
                         <h2 className="font-semibold">Markdown Editor</h2>
                     </div>
 
                     <Textarea
                         value={markdown}
                         onChange={(event) => setMarkdown(event.target.value)}
-                        className="min-h-[650px] resize-none rounded-none border-0 bg-zinc-50 font-mono text-sm leading-7 shadow-none focus-visible:ring-0"
+                        className="min-h-[650px] resize-none rounded-none border-0 bg-muted font-mono text-sm leading-7 text-foreground shadow-none placeholder:text-muted-foreground focus-visible:ring-0"
                     />
                 </Card>
 
-                <Card className="overflow-hidden p-0">
-                    <div className="border-b border-zinc-200 px-4 py-3">
+                <Card className="overflow-hidden p-0 gap-0">
+                    <div className="border-b px-4 py-3">
                         <h2 className="font-semibold">Live Preview</h2>
                     </div>
 
