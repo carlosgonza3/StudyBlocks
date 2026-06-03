@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
+
 import { ArrowLeft, Play } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 
@@ -7,6 +8,9 @@ import MarkdownPreview from "@/components/preview/MarkdownPreview";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
+
+import DocumentStructureDebug from "@/components/document/DocumentStructureDebug";
+import { parseMarkdownSections } from "@/lib/markdown/parseMarkdownSections";
 
 const SAMPLE_MARKDOWN = `# Calculus 2 Study Guide
 
@@ -60,8 +64,11 @@ $$
 `;
 
 export default function EditorPage() {
+
     const { documentId } = useParams();
     const [markdown, setMarkdown] = useState(SAMPLE_MARKDOWN);
+
+    const sections = useMemo(() => parseMarkdownSections(markdown), [markdown]);
 
     return (
         <AppLayout>
@@ -89,10 +96,22 @@ export default function EditorPage() {
                 </Button>
             </div>
 
-            <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
-                <Card className="overflow-hidden p-0 gap-0">
-                    <div className="border-b px-4 py-3">
-                        <h2 className="font-semibold">Markdown Editor</h2>
+            <div className="grid gap-6 xl:grid-cols-[280px_1fr_1fr]">
+                <Card className="overflow-hidden border-border bg-card p-0 text-card-foreground gap-0">
+                    <div className="border-b border-border bg-card px-4 py-3">
+                        <h2 className="font-semibold text-card-foreground">
+                            Document Structure
+                        </h2>
+                    </div>
+
+                    <div className="max-h-[650px] overflow-y-auto p-4">
+                        <DocumentStructureDebug sections={sections} />
+                    </div>
+                </Card>
+
+                <Card className="overflow-hidden border-border bg-card p-0 text-card-foreground gap-0">
+                    <div className="border-b border-border bg-card px-4 py-3">
+                        <h2 className="font-semibold text-card-foreground">Markdown Editor</h2>
                     </div>
 
                     <Textarea
@@ -102,12 +121,12 @@ export default function EditorPage() {
                     />
                 </Card>
 
-                <Card className="overflow-hidden p-0 gap-0">
-                    <div className="border-b px-4 py-3">
-                        <h2 className="font-semibold">Live Preview</h2>
+                <Card className="overflow-hidden border-border bg-card p-0 text-card-foreground gap-0">
+                    <div className="border-b border-border bg-card px-4 py-3">
+                        <h2 className="font-semibold text-card-foreground">Live Preview</h2>
                     </div>
 
-                    <div className="min-h-[650px] overflow-y-auto p-6">
+                    <div className="min-h-[650px] overflow-y-auto bg-card p-6">
                         <MarkdownPreview content={markdown} />
                     </div>
                 </Card>

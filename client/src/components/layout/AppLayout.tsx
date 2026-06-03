@@ -11,7 +11,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
         <div className="min-h-screen bg-background text-foreground">
             <HeaderLayout />
 
-            <main className="mx-auto max-w-7xl px-6 py-8">{children}</main>
+            <main className="mx-auto max-w-[85%] px-6 py-8">{children}</main>
         </div>
     );
 }

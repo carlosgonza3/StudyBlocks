@@ -3,7 +3,7 @@ import {
     ChevronDown,
     CircleGauge,
     LogOut,
-    Moon,
+    Moon, PencilRuler,
     Settings as SettingsIcon,
     Sun,
     UserCircle,
@@ -149,6 +149,7 @@ export default function HeaderLayout() {
                                 </DropdownMenuItem>
 
                                 <DropdownMenuItem className="cursor-pointer">
+                                    <PencilRuler size={16}/>
                                     Editor preferences
                                 </DropdownMenuItem>
                             </DropdownMenuGroup>
